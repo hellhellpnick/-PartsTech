@@ -1,4 +1,7 @@
 //loader
 import { Loader } from './Loader';
 
-export { Loader };
+//posts
+import { Posts } from './Posts';
+
+export { Loader, Posts };

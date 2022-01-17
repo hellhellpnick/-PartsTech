@@ -31,6 +31,7 @@ const palette = {
 
   border: {
     main: '#ececec',
+    primary: '#c6c6c6',
   },
 
   progress: {

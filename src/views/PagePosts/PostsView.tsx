@@ -1,5 +1,7 @@
+import { Posts } from '../../components/';
+
 const PostsView = () => {
-  return <></>;
+  return <Posts />;
 };
 
 export default PostsView;

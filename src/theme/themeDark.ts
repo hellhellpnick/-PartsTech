@@ -1,9 +1,9 @@
 import palette from './paletteDark';
-import typograpgy from './typograpgy';
+import typography from './typography';
 
 const themeDark = {
   palette,
-  typograpgy,
+  typography,
 };
 
 export default themeDark;

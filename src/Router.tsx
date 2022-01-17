@@ -1,24 +1,24 @@
 import { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-const PagePosts = lazy(() => import('./views/PagePosts/PostsView'));
 const PagePost = lazy(() => import('./views/PagePost/PostView'));
+const PagePosts = lazy(() => import('./views/PagePosts/PostsView'));
 
 const routes = {
   posts: {
     main: '/',
-    post: '/:id',
+    post: '/post/:id',
   },
 };
 
 const Router = () => {
   return (
     <Switch>
-      <Route path={routes.posts.main}>
-        <PagePosts />
+      <Route path={routes.posts.post}>
+        <PagePost />
       </Route>
       <Route path={routes.posts.main}>
-        <PagePost />
+        <PagePosts />
       </Route>
     </Switch>
   );

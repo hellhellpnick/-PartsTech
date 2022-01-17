@@ -1,9 +1,9 @@
 import palette from './paletteLight';
-import typograpgy from './typograpgy';
+import typography from './typography';
 
 const themeLight = {
   palette,
-  typograpgy,
+  typography,
 };
 
 export default themeLight;
