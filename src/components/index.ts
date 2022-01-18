@@ -4,4 +4,7 @@ import { Loader } from './Loader';
 //posts
 import { Posts } from './Posts';
 
-export { Loader, Posts };
+//post
+import { PostPage } from './PostPage';
+
+export { Loader, Posts, PostPage };

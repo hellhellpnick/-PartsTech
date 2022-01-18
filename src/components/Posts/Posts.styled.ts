@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface IInputPlaceholder {
+  isShow?: boolean;
+}
+
 const SectionPosts = styled.section`
   display: flex;
   flex-direction: column;
@@ -49,6 +53,7 @@ const BoxListPosts = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    width: 100%;
   }
 `;
 
@@ -57,7 +62,7 @@ const LabelSearchInput = styled.label`
   min-width: 270px;
 `;
 
-const InputPlaceholder = styled.span`
+const InputPlaceholder = styled.span<IInputPlaceholder>`
   position: absolute;
   left: 20px;
   top: 10px;
@@ -66,6 +71,7 @@ const InputPlaceholder = styled.span`
   font-family: ${(props) => props.theme.typography.textFamily.main};
   color: ${(props) => props.theme.palette.text.primary};
   transition: all 0.2s ease;
+  opacity: ${(props) => props.isShow && '0'};
 `;
 
 const SearchInput = styled.input`
@@ -96,6 +102,7 @@ const SearchInput = styled.input`
         font-size: ${(props) => props.theme.typography.textSmall.main};
         background-color: ${(props) => props.theme.palette.background.primary};
         padding: 0 5px;
+        opacity: 1;
       }
     }
   }

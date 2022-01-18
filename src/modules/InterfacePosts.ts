@@ -6,3 +6,10 @@ export interface IPost {
     userId: Number;
   };
 }
+
+export interface IPostOne {
+  id: Number;
+  title: string;
+  body: string;
+  userId: Number;
+}

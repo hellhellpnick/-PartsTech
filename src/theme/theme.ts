@@ -1,4 +1,4 @@
-import palette from './paletteDark';
+import palette from './palette';
 import typography from './typography';
 
 const themeDark = {

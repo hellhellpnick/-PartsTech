@@ -6,6 +6,7 @@ const BoxCenterLoader = styled.div`
   justify-content: center;
   background-color: ${(props) => props.theme.palette.background.main};
   min-height: 100vh;
+  z-index: 1000;
 `;
 
 const WrapperLoader = styled.div`

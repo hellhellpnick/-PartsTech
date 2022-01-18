@@ -7,6 +7,7 @@ const palette = {
 
   backgroundArticle: {
     main: '#282929',
+    primary: '#2d2e2e',
   },
 
   text: {
