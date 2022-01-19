@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const WrapperComment = styled.div`
+  position: relative;
+  padding: 0 10px;
   margin-bottom: 20px;
 
   &:last-child {
@@ -32,4 +34,18 @@ const BodyComment = styled.p`
   color: ${(props) => props.theme.palette.text.primary};
 `;
 
-export { WrapperComment, NameComment, BodyComment };
+const BtnDeleteComment = styled.button`
+  position: absolute;
+  top: 3px;
+  right: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  & > i {
+    color: ${(props) => props.theme.palette.iconColor.main};
+  }
+`;
+
+export { WrapperComment, NameComment, BodyComment, BtnDeleteComment };

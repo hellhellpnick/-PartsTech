@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface IBoxCommentPost {
@@ -31,10 +32,12 @@ const BoxCenterPost = styled.div`
 `;
 
 const BoxContentPost = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-width: 200px;
   background-color: ${(props) => props.theme.palette.backgroundArticle.main};
   padding: 20px;
   width: auto;
@@ -54,11 +57,13 @@ const BoxContentPost = styled.div`
 const BoxCommentPost = styled.div<IBoxCommentPost>`
   position: relative;
   background-color: ${(props) => props.theme.palette.backgroundArticle.primary};
-  padding: 20px;
+  padding: 20px 20px 120px;
+  min-width: 200px;
   width: auto;
   height: auto;
   overflow-y: scroll;
   border-radius: 8px;
+  height: ${(props) => props.isHeight && props.isHeight}px;
   transition: all 0.2s ease;
 
   @media (min-width: 768px) {
@@ -66,7 +71,6 @@ const BoxCommentPost = styled.div<IBoxCommentPost>`
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     width: 40%;
-    height: ${(props) => props.isHeight && props.isHeight}px;
   }
 
   ::-webkit-scrollbar {
@@ -119,6 +123,68 @@ const WrapperInputSend = styled.div<IInputSend>`
   z-index: 10;
 `;
 
+const MessageText = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: ${(props) => props.theme.typography.textMedium.small};
+  font-weight: ${(props) => props.theme.typography.textWeight.main};
+  font-family: ${(props) => props.theme.typography.textFamily.main};
+  color: ${(props) => props.theme.palette.text.primary};
+  height: 70%;
+`;
+
+const LinkArrowBack = styled(NavLink)`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  background-color: ${(props) => props.theme.palette.background.primary};
+  text-decoration: none;
+
+  & > i {
+    color: ${(props) => props.theme.palette.iconColor.main};
+    font-size: 10px;
+    transition: all 0.2s ease;
+  }
+
+  @media (min-width: 1024px) {
+    &:hover {
+      & > i {
+        transform: translateX(-2px);
+      }
+    }
+  }
+`;
+
+const BtnSendComment = styled.button`
+  cursor: pointer;
+  outline: none;
+  border: 1px solid ${(props) => props.theme.palette.text.second};
+  width: 100%;
+  transition: 0.4s;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: transparent;
+  box-shadow: inset 0px 0px 15px 0px rgba(28, 146, 202, 0.5);
+  color: ${(props) => props.theme.palette.text.second};
+
+  @media (min-width: 1024px) {
+    &:hover {
+      border: 1px solid #eee;
+      color: #eee;
+
+      box-shadow: inset 0px 0px 15px 0px rgba(28, 146, 202, 1),
+        0px 0px 20px 6px rgba(28, 146, 202, 1);
+    }
+  }
+`;
+
 export {
   WrapperPost,
   BoxCenterPost,
@@ -128,4 +194,7 @@ export {
   PostText,
   TitleComments,
   WrapperInputSend,
+  MessageText,
+  LinkArrowBack,
+  BtnSendComment,
 };

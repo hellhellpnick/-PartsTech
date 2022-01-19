@@ -16,10 +16,6 @@ const palette = {
     second: '#1c92ca',
   },
 
-  link: {
-    primary: '#1c82cc',
-  },
-
   iconBack: {
     main: '#3f4040',
   },

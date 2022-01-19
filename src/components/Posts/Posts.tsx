@@ -1,40 +1,47 @@
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import PaginatedItems from './PaginatedItems';
-import {
-  SectionPosts,
-  SearchInput,
-  LabelSearchInput,
-  InputPlaceholder,
-  BoxCenterPosts,
-} from './Posts.styled';
+import { SectionPosts, BoxCenterPosts } from './Posts.styled';
+import useActionWithRedux from '../../hooks/useActionWithRedux';
 import { getPosts } from '../../redux/postsFeatures/postsOperation';
-import { useEffect, useState } from 'react';
+import { getPostsSuccess, getPostsRequest } from '../../redux/postsFeatures/postsAction';
+import { MessageText } from '../PostPage/PostPage.styled';
+import { MiniLoader } from '../Loader';
+import { InputPost } from './Input';
+import { IPostOne } from '../../modules/InterfacePosts';
 
 const Posts = () => {
-  const [isPosts, setPosts] = useState([]);
-  const [isShow, setShow] = useState(false);
+  const dispatch = useDispatch();
+  const { posts, loadinPosts } = useActionWithRedux();
+  const [isPosts, setPosts] = useState(posts);
 
   useEffect(() => {
-    getPosts().then((response) => setPosts(response.data));
-  }, []);
+    getPosts().then((response) => {
+      setPosts(response.data);
+      dispatch(getPostsRequest());
+      dispatch(getPostsSuccess(response.data));
+    });
+  }, [dispatch]);
 
-  const filterPosts = (e: any) => {
-    e.target.value ? setShow(true) : setShow(false);
-
-    getPosts().then((response) =>
-      setPosts(
-        response.data.filter((item: any) => item.body.includes(e.target.value), e.target.value),
-      ),
-    );
+  const filterPosts = (e: React.FormEvent<HTMLInputElement>) => {
+    setPosts(posts.filter((item: IPostOne) => item.body.includes(e.currentTarget.value)));
   };
 
   return (
     <SectionPosts>
       <BoxCenterPosts>
-        <LabelSearchInput htmlFor="SearchInput">
-          <SearchInput type="text" id="SearchInput" onChange={filterPosts} />
-          <InputPlaceholder isShow={isShow}>Search post on text..</InputPlaceholder>
-        </LabelSearchInput>
-        <PaginatedItems itemsPerPage={4} postsArr={isPosts} />
+        <InputPost
+          nameInput="searchInput"
+          textInput="Search post on text.."
+          addFunction={filterPosts}
+        />
+        {loadinPosts ? (
+          <MiniLoader />
+        ) : !!isPosts.length ? (
+          <PaginatedItems itemsPerPage={4} postsArr={isPosts} />
+        ) : (
+          <MessageText>Post not found</MessageText>
+        )}
       </BoxCenterPosts>
     </SectionPosts>
   );

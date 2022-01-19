@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-interface IInputPlaceholder {
-  isShow?: boolean;
-}
-
 const SectionPosts = styled.section`
   display: flex;
   flex-direction: column;
@@ -26,13 +22,34 @@ const BoxListPosts = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  .page-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+    width: 30px;
+    height: 30px;
+    transition: all 0.2s ease;
+
+    &:not(:last-child) {
+      margin-right: 5px;
+    }
+
+    @media (min-width: 1024px) {
+      &:hover {
+        border-color: rgba(113, 114, 115, 0.5);
+        border-radius: 50%;
+      }
+    }
+  }
+
   .page-link {
     cursor: pointer;
+    align-self: center;
     font-size: ${(props) => props.theme.typography.textSmall.primary};
     font-weight: ${(props) => props.theme.typography.textWeight.primary};
     font-family: ${(props) => props.theme.typography.textFamily.main};
     color: ${(props) => props.theme.palette.text.primary};
-    padding: 10px;
     transition: all 0.2s ease;
 
     @media (min-width: 1024px) {
@@ -46,6 +63,11 @@ const BoxListPosts = styled.div`
     }
   }
 
+  .active {
+    border-color: ${(props) => props.theme.palette.border.primary};
+    border-radius: 50%;
+  }
+
   .pagination {
     list-style: none;
     display: flex;
@@ -57,62 +79,4 @@ const BoxListPosts = styled.div`
   }
 `;
 
-const LabelSearchInput = styled.label`
-  position: relative;
-  min-width: 270px;
-`;
-
-const InputPlaceholder = styled.span<IInputPlaceholder>`
-  position: absolute;
-  left: 20px;
-  top: 10px;
-  font-size: ${(props) => props.theme.typography.textSmall.primary};
-  font-weight: ${(props) => props.theme.typography.textWeight.primary};
-  font-family: ${(props) => props.theme.typography.textFamily.main};
-  color: ${(props) => props.theme.palette.text.primary};
-  transition: all 0.2s ease;
-  opacity: ${(props) => props.isShow && '0'};
-`;
-
-const SearchInput = styled.input`
-  border: 1px solid ${(props) => props.theme.palette.border.main};
-  border-radius: 8px;
-  width: 100%;
-  outline: none;
-  padding: 10px 20px;
-  margin-bottom: 40px;
-  background-color: transparent;
-  font-size: ${(props) => props.theme.typography.textSmall.primary};
-  font-family: ${(props) => props.theme.typography.textWeight.primary};
-  font-family: ${(props) => props.theme.typography.textFamily.main};
-  color: ${(props) => props.theme.palette.text.primary};
-  transition: all 0.2s ease;
-
-  @media (min-width: 1024px) {
-    &:hover {
-      border-color: ${(props) => props.theme.palette.border.primary};
-    }
-
-    &:focus {
-      border-color: ${(props) => props.theme.palette.border.primary};
-
-      & + ${InputPlaceholder} {
-        top: -10px;
-        left: 10px;
-        font-size: ${(props) => props.theme.typography.textSmall.main};
-        background-color: ${(props) => props.theme.palette.background.primary};
-        padding: 0 5px;
-        opacity: 1;
-      }
-    }
-  }
-`;
-
-export {
-  SectionPosts,
-  SearchInput,
-  LabelSearchInput,
-  InputPlaceholder,
-  BoxCenterPosts,
-  BoxListPosts,
-};
+export { SectionPosts, BoxCenterPosts, BoxListPosts };

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import {
   WrapperPost,
   BoxCenterPost,
@@ -8,38 +8,85 @@ import {
   PostText,
   TitleComments,
   WrapperInputSend,
+  MessageText,
+  LinkArrowBack,
+  BtnSendComment,
 } from './PostPage.styled';
+import { MiniLoader } from '../Loader';
 import { Comment } from './Comment';
-import { getPost, getPostComments } from '../../redux/postsFeatures/postsOperation';
-import { IPostOne } from './../../modules/InterfacePosts';
+import useActionWithRedux from '../../hooks/useActionWithRedux';
+import { routes } from '../../Router';
+import { InputPost } from '..';
+import { IComment } from '../../modules/InterfaceComment';
 
 const PostPage = () => {
-  const [isPost, setPost] = useState<IPostOne>();
-  const [isPostComments, setPostComments] = useState([]);
+  const { activePost, activeComment, loadingComment, loadingPost, addCommentPost } =
+    useActionWithRedux();
   const [isScrollComment, setScrollComment] = useState(0);
+  const [isTitleComment, setTitleComment] = useState('');
+  const [isTextComment, setTextComment] = useState('');
   const isContentPost = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    getPost(1).then((response) => setPost(response.data));
-    getPostComments(1).then((response) => setPostComments(response.data));
-  }, []);
+  const scrollBlock = (e: React.UIEvent<HTMLElement>) => {
+    setScrollComment(e.currentTarget.scrollTop);
+  };
 
-  const scrollBlock = (e: any) => {
-    setScrollComment(e.target.scrollTop);
+  const availableText = (e: React.FormEvent<HTMLInputElement>) => {
+    setTitleComment(e.currentTarget.value);
+  };
+  const availableTitle = (e: React.FormEvent<HTMLInputElement>) => {
+    setTextComment(e.currentTarget.value);
+  };
+
+  const addComment = () => {
+    addCommentPost([
+      ...activeComment,
+      { postId: 1, id: 6, name: isTitleComment, email: 'Hayden@althea.biz', body: isTextComment },
+    ]);
   };
 
   return (
     <WrapperPost>
       <BoxCenterPost>
         <BoxContentPost ref={isContentPost}>
-          <PostTitle>{isPost?.title}</PostTitle>
-          <PostText>{isPost?.body}</PostText>
+          {loadingPost ? (
+            <MiniLoader />
+          ) : (
+            <>
+              <LinkArrowBack to={routes.posts.main}>
+                <i className="fas fa-arrow-left"></i>
+              </LinkArrowBack>
+              <PostTitle>{activePost?.title}</PostTitle>
+              <PostText>{activePost?.body}</PostText>
+            </>
+          )}
         </BoxContentPost>
         <BoxCommentPost onScroll={scrollBlock} isHeight={isContentPost.current?.offsetHeight}>
           <TitleComments>Comments</TitleComments>
-          <WrapperInputSend isScroll={isScrollComment}>asd</WrapperInputSend>
-          {!!isPostComments.length &&
-            isPostComments.map((item: any, index: number) => <Comment item={item} key={index} />)}
+          <WrapperInputSend isScroll={isScrollComment}>
+            <InputPost
+              nameInput="titleInput"
+              textInput="Title comment.."
+              addFunction={availableTitle}
+              isFixed={true}
+            />
+            <InputPost
+              nameInput="textInput"
+              textInput="Text comment.."
+              addFunction={availableText}
+              isFixed={true}
+            />
+            <BtnSendComment onClick={addComment}>Send Comment</BtnSendComment>
+          </WrapperInputSend>
+          {loadingComment ? (
+            <MiniLoader />
+          ) : !!activeComment.length ? (
+            activeComment.map((item: IComment, index: number) => (
+              <Comment item={item} key={index} />
+            ))
+          ) : (
+            <MessageText>No comments</MessageText>
+          )}
         </BoxCommentPost>
       </BoxCenterPost>
     </WrapperPost>
