@@ -1,4 +1,4 @@
-import { PostPage } from '../../components';
+import PostPage from '../../components/PostPage/PostPage';
 
 const PostView = () => {
   return <PostPage />;

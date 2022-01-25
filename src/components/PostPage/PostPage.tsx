@@ -12,11 +12,11 @@ import {
   LinkArrowBack,
   BtnSendComment,
 } from './PostPage.styled';
-import { MiniLoader } from '../Loader';
-import { Comment } from './Comment';
+import MiniLoader from '../Loader/MiniLoader/MiniLoader';
+import Comment from './Comment/Comment';
 import useActionWithRedux from '../../hooks/useActionWithRedux';
 import { routes } from '../../Router';
-import { InputPost } from '..';
+import InputPost from '../Posts/Input/InputPost';
 import { IComment } from '../../modules/InterfaceComment';
 
 const PostPage = () => {

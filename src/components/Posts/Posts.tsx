@@ -6,8 +6,8 @@ import useActionWithRedux from '../../hooks/useActionWithRedux';
 import { getPosts } from '../../redux/postsFeatures/postsOperation';
 import { getPostsSuccess, getPostsRequest } from '../../redux/postsFeatures/postsAction';
 import { MessageText } from '../PostPage/PostPage.styled';
-import { MiniLoader } from '../Loader';
-import { InputPost } from './Input';
+import MiniLoader from '../Loader/MiniLoader/MiniLoader';
+import InputPost from './Input/InputPost';
 import { IPostOne } from '../../modules/InterfacePosts';
 
 const Posts = () => {

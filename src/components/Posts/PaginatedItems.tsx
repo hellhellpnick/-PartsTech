@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import { BoxListPosts } from './Posts.styled';
-import { Post } from './Post';
+import Post from './Post/Post';
 import { IArrPosts, IPostOne, IPaginatedItems, IPostSelected } from '../../modules/InterfacePosts';
 
 const Posts = ({ currentItems }: IArrPosts) => {

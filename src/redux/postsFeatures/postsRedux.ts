@@ -22,16 +22,8 @@ const activePost = createReducer({} as IPostOne, {
   }),
 });
 
-const activePostError = createReducer<string>('', {
-  [getPostError.type]: (_: string, { payload }: PayloadAction<string>) => payload,
-});
-
 const activeCommentPost = createReducer<Array<[]>>([], {
   [getCommentsSuccess.type]: (state, { payload }: PayloadAction<Array<[]>>) => [...payload],
-});
-
-const activeCommentPostError = createReducer<string>('', {
-  [getCommentsError.type]: (_: string, { payload }: PayloadAction<string>) => payload,
 });
 
 const isLoadingPosts = createReducer(false, {
@@ -52,9 +44,7 @@ const isLoadingComments = createReducer(false, {
 export default combineReducers({
   posts,
   activePost,
-  activePostError,
   activeCommentPost,
-  activeCommentPostError,
   isLoadingPost,
   isLoadingComments,
   isLoadingPosts,
