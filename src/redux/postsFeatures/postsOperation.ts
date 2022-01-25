@@ -2,38 +2,54 @@ import axios from 'axios';
 import { Dispatch } from 'redux';
 import { IPostOne } from '../../modules/InterfacePosts';
 import {
+  getPostsRequest,
   getPostSuccess,
   getPostError,
   getPostRequest,
   getCommentsSuccess,
   getCommentsError,
   getCommentsRequest,
+  getPostsSuccess,
 } from './postsAction';
 
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 
-export const getPosts = () => axios.get('/posts');
-
-export const getPost = (id: Number) => async (dispatch: Dispatch<{ type: string }>) => {
-  dispatch(getPostRequest());
-
+export const getPosts = (setState: any) => async (dispatch: Dispatch<{ type: string }>) => {
+  dispatch(getPostsRequest());
   try {
-    const { data } = await axios.get<IPostOne>(`/posts/${id}`);
+    const { data } = await axios.get<any>(`/posts`);
 
-    dispatch(getPostSuccess(data));
+    dispatch(getPostsSuccess(data));
+    setState(data);
   } catch (error) {
     dispatch(getPostError((error as Error).message));
   }
 };
 
-export const getPostComments = (id: Number) => async (dispatch: Dispatch<{ type: string }>) => {
-  dispatch(getCommentsRequest());
+export const getPost =
+  (id: string | undefined, setPost: any) => async (dispatch: Dispatch<{ type: string }>) => {
+    dispatch(getPostRequest());
 
-  try {
-    const { data } = await axios.get(`/posts/${id}/comments`);
+    try {
+      const { data } = await axios.get<IPostOne>(`/posts/${id}`);
 
-    dispatch(getCommentsSuccess(data));
-  } catch (error) {
-    dispatch(getCommentsError((error as Error).message));
-  }
-};
+      dispatch(getPostSuccess(data));
+      setPost(data);
+    } catch (error) {
+      dispatch(getPostError((error as Error).message));
+    }
+  };
+
+export const getPostComments =
+  (id: any, setComment: any) => async (dispatch: Dispatch<{ type: string }>) => {
+    dispatch(getCommentsRequest());
+
+    try {
+      const { data } = await axios.get(`/posts/${id}/comments`);
+
+      dispatch(getCommentsSuccess(data));
+      setComment(data);
+    } catch (error) {
+      dispatch(getCommentsError((error as Error).message));
+    }
+  };

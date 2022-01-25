@@ -6,3 +6,15 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+
+body::-webkit-scrollbar {
+  margin-right: -8px;
+  width: 8px;
+  height: 8px;
+  background-color: #717273;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #575859;
+  border-radius: 8px;
+}

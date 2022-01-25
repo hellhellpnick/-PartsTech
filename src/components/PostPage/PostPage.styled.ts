@@ -1,10 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
-interface IBoxCommentPost {
-  isHeight?: number;
-}
-
 interface IInputSend {
   isScroll?: number;
 }
@@ -54,37 +49,6 @@ const BoxContentPost = styled.div`
   }
 `;
 
-const BoxCommentPost = styled.div<IBoxCommentPost>`
-  position: relative;
-  background-color: ${(props) => props.theme.palette.backgroundArticle.primary};
-  padding: 20px 20px 120px;
-  min-width: 200px;
-  width: auto;
-  height: auto;
-  overflow-y: scroll;
-  border-radius: 8px;
-  height: ${(props) => props.isHeight && props.isHeight}px;
-  transition: all 0.2s ease;
-
-  @media (min-width: 768px) {
-    border-radius: 0;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    width: 40%;
-  }
-
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    background-color: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.palette.iconColor.primary};
-    border-radius: 8px;
-  }
-`;
-
 const PostTitle = styled.h3`
   margin-bottom: 8px;
   text-transform: capitalize;
@@ -100,40 +64,6 @@ const PostText = styled.p`
   font-family: ${(props) => props.theme.typography.textFamily.main};
   color: ${(props) => props.theme.palette.text.primary};
 `;
-
-const TitleComments = styled.h3`
-  font-size: ${(props) => props.theme.typography.textMedium.small};
-  font-weight: ${(props) => props.theme.typography.textWeight.main};
-  font-family: ${(props) => props.theme.typography.textFamily.main};
-  color: ${(props) => props.theme.palette.text.primary};
-  font-style: italic;
-  text-align: center;
-  margin-bottom: 20px;
-`;
-
-const WrapperInputSend = styled.div<IInputSend>`
-  position: absolute;
-  bottom: -${(props) => props.isScroll}px;
-  left: 0;
-  width: 100%;
-  min-height: 60px;
-  padding: 10px;
-  background-color: ${(props) => props.theme.palette.backgroundArticle.primary};
-  border: 1px solid ${(props) => props.theme.palette.border.main};
-  z-index: 10;
-`;
-
-const MessageText = styled.p`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: ${(props) => props.theme.typography.textMedium.small};
-  font-weight: ${(props) => props.theme.typography.textWeight.main};
-  font-family: ${(props) => props.theme.typography.textFamily.main};
-  color: ${(props) => props.theme.palette.text.primary};
-  height: 70%;
-`;
-
 const LinkArrowBack = styled(NavLink)`
   position: absolute;
   display: flex;
@@ -162,39 +92,4 @@ const LinkArrowBack = styled(NavLink)`
   }
 `;
 
-const BtnSendComment = styled.button`
-  cursor: pointer;
-  outline: none;
-  border: 1px solid ${(props) => props.theme.palette.text.second};
-  width: 100%;
-  transition: 0.4s;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: transparent;
-  box-shadow: inset 0px 0px 15px 0px rgba(28, 146, 202, 0.5);
-  color: ${(props) => props.theme.palette.text.second};
-
-  @media (min-width: 1024px) {
-    &:hover {
-      border: 1px solid #eee;
-      color: #eee;
-
-      box-shadow: inset 0px 0px 15px 0px rgba(28, 146, 202, 1),
-        0px 0px 20px 6px rgba(28, 146, 202, 1);
-    }
-  }
-`;
-
-export {
-  WrapperPost,
-  BoxCenterPost,
-  BoxContentPost,
-  BoxCommentPost,
-  PostTitle,
-  PostText,
-  TitleComments,
-  WrapperInputSend,
-  MessageText,
-  LinkArrowBack,
-  BtnSendComment,
-};
+export { WrapperPost, BoxCenterPost, BoxContentPost, PostTitle, PostText, LinkArrowBack };

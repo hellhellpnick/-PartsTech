@@ -1,15 +1,8 @@
 import 'aos/dist/aos.css';
-import useActionWithRedux from '../../../hooks/useActionWithRedux';
 import { IPost } from '../../../modules/InterfacePosts';
 import { WrapperPost, SvgPost, TitlePost, TextPost, LinkToPost } from './Post.styled';
 
 const Post = ({ item }: IPost) => {
-  const { getActivePost, getComments } = useActionWithRedux();
-
-  const getPost = () => {
-    getActivePost(item.id);
-    getComments(item.id);
-  };
   return (
     <WrapperPost>
       <SvgPost width="158" height="119" aria-hidden="true">
@@ -68,7 +61,7 @@ const Post = ({ item }: IPost) => {
       </SvgPost>
       <TitlePost>{item.title}</TitlePost>
       <TextPost>{item.body}</TextPost>
-      <LinkToPost to={`/post/${item.id}`} onClick={getPost}>
+      <LinkToPost to={`post/${item.id}`}>
         <i className="fas fa-arrow-right"></i>
       </LinkToPost>
     </WrapperPost>

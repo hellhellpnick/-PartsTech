@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback } from 'react';
-import { getPost, getPostComments } from './../redux/postsFeatures/postsOperation';
+import { getPost, getPostComments, getPosts } from './../redux/postsFeatures/postsOperation';
 import { getCommentsSuccess } from './../redux/postsFeatures/postsAction';
 import {
   IActivePost,
@@ -21,15 +21,15 @@ const useActionWithRedux = () => {
   const loadinPosts = useSelector((state: ILoadingPosts) => state.posts.isLoadingPosts);
 
   const getActivePost = useCallback(
-    (id: Number) => {
-      dispatch(getPost(id));
+    (id: string | undefined, setPost: any) => {
+      dispatch(getPost(id, setPost));
     },
     [dispatch],
   );
 
   const getComments = useCallback(
-    (id: Number) => {
-      dispatch(getPostComments(id));
+    (id: any, setComment: any) => {
+      dispatch(getPostComments(id, setComment));
     },
     [dispatch],
   );
@@ -48,6 +48,13 @@ const useActionWithRedux = () => {
     [dispatch],
   );
 
+  const getAllPosts = useCallback(
+    (setState: any) => {
+      dispatch(getPosts(setState));
+    },
+    [dispatch],
+  );
+
   return {
     posts,
     activePost,
@@ -59,6 +66,7 @@ const useActionWithRedux = () => {
     getComments,
     addCommentPost,
     deleteCommentPost,
+    getAllPosts,
   };
 };
 

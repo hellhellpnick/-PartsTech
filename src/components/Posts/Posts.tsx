@@ -1,44 +1,47 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import PaginatedItems from './PaginatedItems';
 import { SectionPosts, BoxCenterPosts } from './Posts.styled';
 import useActionWithRedux from '../../hooks/useActionWithRedux';
-import { getPosts } from '../../redux/postsFeatures/postsOperation';
-import { getPostsSuccess, getPostsRequest } from '../../redux/postsFeatures/postsAction';
-import { MessageText } from '../PostPage/PostPage.styled';
+import { MessageText } from '../PostPage/Comment/Comments.styled';
 import MiniLoader from '../Loader/MiniLoader/MiniLoader';
 import InputPost from './Input/InputPost';
-import { IPostOne } from '../../modules/InterfacePosts';
+import { useSearchParams } from 'react-router-dom';
 
 const Posts = () => {
-  const dispatch = useDispatch();
-  const { posts, loadinPosts } = useActionWithRedux();
-  const [isPosts, setPosts] = useState(posts);
+  const { posts, loadinPosts, getAllPosts } = useActionWithRedux();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const postQuery = searchParams.get('post') || '';
+  const [isPosts, setPosts] = useState([{ title: '', id: 1 }] || posts);
+  const [isSearch, setSearch] = useState(postQuery);
 
   useEffect(() => {
-    getPosts().then((response) => {
-      setPosts(response.data);
-      dispatch(getPostsRequest());
-      dispatch(getPostsSuccess(response.data));
-    });
-  }, [dispatch]);
+    getAllPosts(setPosts);
+  }, [getAllPosts]);
 
   const filterPosts = (e: React.FormEvent<HTMLInputElement>) => {
-    setPosts(posts.filter((item: IPostOne) => item.body.includes(e.currentTarget.value)));
+    const value = e.currentTarget.value;
+    setSearch(value);
+    setSearchParams({ post: value });
   };
 
   return (
     <SectionPosts>
       <BoxCenterPosts>
-        <InputPost
-          nameInput="searchInput"
-          textInput="Search post on text.."
-          addFunction={filterPosts}
-        />
+        <form autoComplete="off">
+          <InputPost
+            nameInput={isSearch}
+            textInput="Search post on text.."
+            isFixed={true}
+            addFunction={filterPosts}
+          />
+        </form>
         {loadinPosts ? (
           <MiniLoader />
         ) : !!isPosts.length ? (
-          <PaginatedItems itemsPerPage={4} postsArr={isPosts} />
+          <PaginatedItems
+            itemsPerPage={4}
+            postsArr={isPosts.filter((post) => post.title.includes(postQuery))}
+          />
         ) : (
           <MessageText>Post not found</MessageText>
         )}

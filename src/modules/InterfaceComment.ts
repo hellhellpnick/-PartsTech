@@ -14,4 +14,5 @@ export interface ICommentItem {
     email: string;
     body: string;
   };
+  isComments: any;
 }

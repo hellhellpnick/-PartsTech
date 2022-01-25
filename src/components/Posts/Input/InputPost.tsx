@@ -8,16 +8,24 @@ interface IInputPost {
   isFixed?: boolean;
 }
 const InputPost = ({ nameInput, textInput, addFunction, isFixed }: IInputPost) => {
-  const [isShow, setShow] = useState(false);
+  const [isShow, setShow] = useState(nameInput ? true : false);
+  const [isInput, setInput] = useState(nameInput);
 
   const changeInput = (e: React.FormEvent<HTMLInputElement>) => {
     e.currentTarget.value ? setShow(true) : setShow(false);
     addFunction(e);
+    setInput(e.currentTarget.value);
   };
 
   return (
     <LabelSearchInput htmlFor={nameInput}>
-      <SearchInput type="text" id={nameInput} onChange={changeInput} isFixed={isFixed} />
+      <SearchInput
+        type="text"
+        id={nameInput}
+        onChange={changeInput}
+        isFixed={isFixed}
+        value={isInput}
+      />
       <InputPlaceholder isShow={isShow} isFixed={isFixed}>
         {textInput}
       </InputPlaceholder>

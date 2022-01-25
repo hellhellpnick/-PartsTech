@@ -5,25 +5,12 @@ import {
   getPostsRequest,
   getPostSuccess,
   getPostRequest,
-  getPostError,
   getCommentsSuccess,
   getCommentsRequest,
-  getCommentsError,
 } from './postsAction';
-import { IPostOne } from '../../modules/InterfacePosts';
 
 const posts = createReducer<Array<[]>>([], {
   [getPostsSuccess.type]: (state, { payload }: PayloadAction<Array<[]>>) => [...payload],
-});
-
-const activePost = createReducer({} as IPostOne, {
-  [getPostSuccess.type]: (_: IPostOne, { payload }: PayloadAction<IPostOne>) => ({
-    ...payload,
-  }),
-});
-
-const activeCommentPost = createReducer<Array<[]>>([], {
-  [getCommentsSuccess.type]: (state, { payload }: PayloadAction<Array<[]>>) => [...payload],
 });
 
 const isLoadingPosts = createReducer(false, {
@@ -43,8 +30,6 @@ const isLoadingComments = createReducer(false, {
 
 export default combineReducers({
   posts,
-  activePost,
-  activeCommentPost,
   isLoadingPost,
   isLoadingComments,
   isLoadingPosts,
