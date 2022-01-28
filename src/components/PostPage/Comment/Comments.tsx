@@ -3,12 +3,12 @@ import { IComment } from '../../../modules/InterfaceComment';
 import MiniLoader from '../../Loader/MiniLoader/MiniLoader';
 import Comment from './Comment';
 import { TitleComments, MessageText, BoxCommentPost } from './Comments.styled';
-import useActionWithRedux from '../../../hooks/useActionWithRedux';
+import useActionPosts from '../../../hooks/useActionPosts';
 import { useParams } from 'react-router-dom';
 
 const Comments = ({ isContentPost }: any) => {
   const { id } = useParams();
-  const { loadingComment, getComments } = useActionWithRedux();
+  const { loadingComment, getComments } = useActionPosts();
 
   const [isComments, setComments] = useState<any>({});
 

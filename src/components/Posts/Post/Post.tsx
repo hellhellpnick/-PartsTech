@@ -2,7 +2,7 @@ import 'aos/dist/aos.css';
 import { IPost } from '../../../modules/InterfacePosts';
 import { WrapperPost, SvgPost, TitlePost, TextPost, LinkToPost } from './Post.styled';
 
-const Post = ({ item }: IPost) => {
+const Post = ({ item, type }: IPost) => {
   return (
     <WrapperPost>
       <SvgPost width="158" height="119" aria-hidden="true">
@@ -60,8 +60,16 @@ const Post = ({ item }: IPost) => {
         </g>
       </SvgPost>
       <TitlePost>{item.title}</TitlePost>
-      <TextPost>{item.body}</TextPost>
-      <LinkToPost to={`post/${item.id}`}>
+      <TextPost>{item?.body}</TextPost>
+      <LinkToPost
+        to={`${
+          type === 'posts'
+            ? 'post/' + item.id
+            : type === 'albums'
+            ? 'album/' + item.id
+            : 'user/' + item.id
+        }`}
+      >
         <i className="fas fa-arrow-right"></i>
       </LinkToPost>
     </WrapperPost>

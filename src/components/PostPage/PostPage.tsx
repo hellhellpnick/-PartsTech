@@ -8,20 +8,19 @@ import {
   LinkArrowBack,
 } from './PostPage.styled';
 import MiniLoader from '../Loader/MiniLoader/MiniLoader';
-import useActionWithRedux from '../../hooks/useActionWithRedux';
-import { routes } from '../../Router';
+import useActionPosts from '../../hooks/useActionPosts';
 import { useParams } from 'react-router-dom';
 import Comments from './Comment/Comments';
 
 const PostPage = () => {
   const { id } = useParams();
-  const { loadingPost, getActivePost, getComments } = useActionWithRedux();
+  const { loadingPost, getActivePost } = useActionPosts();
   const [isPost, setPost] = useState<any>({});
   const isContentPost = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     getActivePost(id, setPost);
-  }, [id, getActivePost, getComments]);
+  }, [id, getActivePost]);
 
   return (
     <WrapperPost>
@@ -31,7 +30,7 @@ const PostPage = () => {
             <MiniLoader />
           ) : (
             <>
-              <LinkArrowBack to={routes.posts.main}>
+              <LinkArrowBack to={'/posts'}>
                 <i className="fas fa-arrow-left"></i>
               </LinkArrowBack>
               <PostTitle>{isPost?.title}</PostTitle>

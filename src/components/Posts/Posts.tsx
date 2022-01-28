@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import PaginatedItems from './PaginatedItems';
 import { SectionPosts, BoxCenterPosts } from './Posts.styled';
-import useActionWithRedux from '../../hooks/useActionWithRedux';
 import { MessageText } from '../PostPage/Comment/Comments.styled';
 import MiniLoader from '../Loader/MiniLoader/MiniLoader';
 import InputPost from './Input/InputPost';
 import { useSearchParams } from 'react-router-dom';
+import useActionPosts from '../../hooks/useActionPosts';
 
 const Posts = () => {
-  const { posts, loadinPosts, getAllPosts } = useActionWithRedux();
+  const { posts, loadinPosts, getAllPosts } = useActionPosts();
   const [searchParams, setSearchParams] = useSearchParams();
   const postQuery = searchParams.get('post') || '';
   const [isPosts, setPosts] = useState([{ title: '', id: 1 }] || posts);
@@ -39,6 +39,7 @@ const Posts = () => {
           <MiniLoader />
         ) : !!isPosts.length ? (
           <PaginatedItems
+            type="posts"
             itemsPerPage={4}
             postsArr={isPosts.filter((post) => post.title.includes(postQuery))}
           />

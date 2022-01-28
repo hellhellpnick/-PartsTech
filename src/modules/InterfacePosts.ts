@@ -5,6 +5,7 @@ export interface IPost {
     body: string;
     userId: Number;
   };
+  type: string;
 }
 
 export interface IPostOne {
@@ -25,11 +26,13 @@ export interface IArrPosts {
         },
       ]
     | null;
+  type: string;
 }
 
 export interface IPaginatedItems {
   itemsPerPage: number;
   postsArr: any;
+  type: string;
 }
 
 export interface IPostSelected {

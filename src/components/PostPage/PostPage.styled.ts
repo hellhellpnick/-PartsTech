@@ -33,6 +33,7 @@ const BoxContentPost = styled.div`
   align-items: center;
   justify-content: center;
   min-width: 200px;
+  max-width: 600px;
   background-color: ${(props) => props.theme.palette.backgroundArticle.main};
   padding: 20px;
   width: auto;
@@ -44,7 +45,7 @@ const BoxContentPost = styled.div`
     border-radius: 0;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    width: 60%;
+    width: 100%;
     margin-bottom: 0;
   }
 `;
