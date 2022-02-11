@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/-PartsTech/static/css/main.f8d38e3b.css",
+    "main.js": "/-PartsTech/static/js/main.201108bd.js",
+    "static/js/122.f8932950.chunk.js": "/-PartsTech/static/js/122.f8932950.chunk.js",
+    "static/js/334.48700ca9.chunk.js": "/-PartsTech/static/js/334.48700ca9.chunk.js",
+    "static/js/731.cb207709.chunk.js": "/-PartsTech/static/js/731.cb207709.chunk.js",
+    "static/js/42.8dc93b40.chunk.js": "/-PartsTech/static/js/42.8dc93b40.chunk.js",
+    "static/js/612.1203057a.chunk.js": "/-PartsTech/static/js/612.1203057a.chunk.js",
+    "static/js/913.b89b4d1e.chunk.js": "/-PartsTech/static/js/913.b89b4d1e.chunk.js",
+    "static/js/774.642eabc6.chunk.js": "/-PartsTech/static/js/774.642eabc6.chunk.js",
+    "static/css/371.684ee381.chunk.css": "/-PartsTech/static/css/371.684ee381.chunk.css",
+    "static/js/371.c1b6e429.chunk.js": "/-PartsTech/static/js/371.c1b6e429.chunk.js",
+    "static/js/408.827925dc.chunk.js": "/-PartsTech/static/js/408.827925dc.chunk.js",
+    "index.html": "/-PartsTech/index.html",
+    "main.f8d38e3b.css.map": "/-PartsTech/static/css/main.f8d38e3b.css.map",
+    "main.201108bd.js.map": "/-PartsTech/static/js/main.201108bd.js.map",
+    "122.f8932950.chunk.js.map": "/-PartsTech/static/js/122.f8932950.chunk.js.map",
+    "334.48700ca9.chunk.js.map": "/-PartsTech/static/js/334.48700ca9.chunk.js.map",
+    "731.cb207709.chunk.js.map": "/-PartsTech/static/js/731.cb207709.chunk.js.map",
+    "42.8dc93b40.chunk.js.map": "/-PartsTech/static/js/42.8dc93b40.chunk.js.map",
+    "612.1203057a.chunk.js.map": "/-PartsTech/static/js/612.1203057a.chunk.js.map",
+    "913.b89b4d1e.chunk.js.map": "/-PartsTech/static/js/913.b89b4d1e.chunk.js.map",
+    "774.642eabc6.chunk.js.map": "/-PartsTech/static/js/774.642eabc6.chunk.js.map",
+    "371.684ee381.chunk.css.map": "/-PartsTech/static/css/371.684ee381.chunk.css.map",
+    "371.c1b6e429.chunk.js.map": "/-PartsTech/static/js/371.c1b6e429.chunk.js.map",
+    "408.827925dc.chunk.js.map": "/-PartsTech/static/js/408.827925dc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f8d38e3b.css",
+    "static/js/main.201108bd.js"
+  ]
+}
